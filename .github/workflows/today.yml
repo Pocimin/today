@@ -21,7 +21,7 @@ jobs:
   today:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: write today's entry
         id: today
         run: python3 scripts/update.py
