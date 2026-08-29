@@ -1,0 +1,31 @@
+# fallback quotes when the internet is taking a nap.
+
+"The best time to plant a tree was 20 years ago. The second best time is now." - Chinese proverb
+"You miss 100% of the shots you don't take." - Wayne Gretzky
+"Stay hungry, stay foolish." - Steve Jobs
+"What we think, we become." - Buddha
+"Simplicity is the soul of efficiency." - Austin Freeman
+"It always seems impossible until it's done." - Nelson Mandela
+"Done is better than perfect." - Sheryl Sandberg
+"Life is what happens when you're busy making other plans." - John Lennon
+"Talk is cheap. Show me the code." - Linus Torvalds
+"Not all who wander are lost." - J.R.R. Tolkien
+"The journey of a thousand miles begins with a single step." - Lao Tzu
+"Whether you think you can or you think you can't, you're right." - Henry Ford
+"The only way to do great work is to love what you do." - Steve Jobs
+"In the middle of difficulty lies opportunity." - Albert Einstein
+"Ever tried? Ever failed? Try again. Fail again. Fail better." - Samuel Beckett
+"An investment in knowledge pays the best interest." - Benjamin Franklin
+"I have not failed. I've just found 10,000 ways that won't work." - Thomas Edison
+"Make it work, then make it right, then make it fast." - Kent Beck
+"Fortune favors the bold." - Virgil
+"The best revenge is massive success." - Frank Sinatra
+"Do or do not. There is no try." - Yoda
+"Amateurs sit and wait for inspiration, the rest of us just get up and go to work." - P.J. O'Rourke
+"Simplicity is an acquired taste. It's like a garden: the simpler it is, the more you have to take care of it." - Kirstyn Corry
+"Any sufficiently advanced technology is indistinguishable from magic." - Arthur C. Clarke
+"Everything should be made as simple as possible, but not simpler." - Albert Einstein
+"A ship in harbor is safe, but that is not what ships are built for." - John A. Shedd
+"Sometimes I've believed as many as six impossible things before breakfast." - Lewis Carroll
+"Go confidently in the direction of your dreams. Live the life you've imagined." - Henry David Thoreau
+"Twenty years from now, you'll be more disappointed by the things that you didn't do than by the ones you did." - Mark Twain

@@ -1,0 +1,42 @@
+# wakes the journal up a few times a day (UTC) so it never misses an entry.
+name: today
+
+on:
+  schedule:
+    # four wake-ups, at weird times, like a human schedule
+    - cron: "17 3 * * *"
+    - cron: "41 9 * * *"
+    - cron: "23 15 * * *"
+    - cron: "55 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: today
+  cancel-in-progress: false
+
+jobs:
+  today:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: write today's entry
+        id: today
+        run: python3 scripts/update.py
+      - name: commit and push
+        env:
+          KIND: ${{ steps.today.outputs.kind }}
+          AUTHOR_NAME: ${{ github.actor }}
+          AUTHOR_EMAIL: ${{ secrets.AUTHOR_EMAIL }}
+        run: |
+          git config user.name "${AUTHOR_NAME}"
+          git config user.email "${AUTHOR_EMAIL:-${{ github.actor }}@users.noreply.github.com}"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing new, done"
+            exit 0
+          fi
+          git commit -m "today: ${KIND:-write} for $(date -u +%Y-%m-%d)"
+          git push
