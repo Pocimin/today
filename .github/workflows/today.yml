@@ -1,13 +1,16 @@
-# wakes the journal up a few times a day (UTC) so it never misses an entry.
+# wakes the journal up a few times a day (UTC). each wake-up makes a random
+# number of commits, so the graph stays honest-ish.
 name: today
 
 on:
   schedule:
-    # four wake-ups, at weird times, like a human schedule
+    # six wake-ups at weird times, like a human schedule
     - cron: "17 3 * * *"
-    - cron: "41 9 * * *"
-    - cron: "23 15 * * *"
-    - cron: "55 21 * * *"
+    - cron: "43 7 * * *"
+    - cron: "29 10 * * *"
+    - cron: "5 14 * * *"
+    - cron: "37 18 * * *"
+    - cron: "11 22 * * *"
   workflow_dispatch:
 
 permissions:
@@ -22,21 +25,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: write today's entry
-        id: today
-        run: python3 scripts/update.py
-      - name: commit and push
+      - name: wake up and write
         env:
-          KIND: ${{ steps.today.outputs.kind }}
           AUTHOR_NAME: ${{ github.actor }}
           AUTHOR_EMAIL: ${{ secrets.AUTHOR_EMAIL }}
         run: |
           git config user.name "${AUTHOR_NAME}"
-          git config user.email "${AUTHOR_EMAIL:-${{ github.actor }}@users.noreply.github.com}"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "nothing new, done"
-            exit 0
-          fi
-          git commit -m "today: ${KIND:-write} for $(date -u +%Y-%m-%d)"
+          git config user.email "${AUTHOR_EMAIL:-${AUTHOR_NAME}@users.noreply.github.com}"
+          n=$(python3 scripts/update.py --count)
+          echo "planned commits: $n"
+          i=0
+          while [ "$i" -lt "$n" ]; do
+            kind=$(python3 scripts/update.py | cut -d' ' -f1)
+            git add -A
+            if git diff --cached --quiet; then
+              echo "nothing new this round"
+            else
+              git commit -m "today: $kind for $(date -u +%F)"
+            fi
+            i=$((i+1))
+          done
+      - name: push
+        run: |
+          git pull --rebase
           git push

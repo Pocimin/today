@@ -4,6 +4,7 @@ import json
 import os
 import random
 import re
+import sys
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -163,12 +164,28 @@ def rebuild_readme(dates, day, weeks=16):
     readme.write_text(text, encoding="utf-8")
 
 
+DAILY_CEILING = 15
+
+
+def plan_count(day):
+    """how many commits this wake-up should produce. keeps the daily total
+    somewhere between 'touching grass' and 'unemployed behaviour'."""
+    if not day_path(day).exists():
+        return random.randint(1, 2)
+    existing = day_path(day).read_text(encoding="utf-8").count("check-in #")
+    room = max(0, DAILY_CEILING - existing)
+    return min(random.choice([0, 1, 1, 1, 2, 2, 3]), room)
+
+
 def main():
+    ENTRIES.mkdir(exist_ok=True)
+    day = now_utc().date()
+    if "--count" in sys.argv:
+        print(plan_count(day))
+        return
     facts = read_lines("facts.txt")
     words = read_lines("words.txt")
     quotes = read_lines("quotes.txt")
-    ENTRIES.mkdir(exist_ok=True)
-    day = now_utc().date()
     path = day_path(day)
     if path.exists():
         current = path.read_text(encoding="utf-8")
