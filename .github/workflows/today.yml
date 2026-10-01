@@ -25,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GH_PAT }}
+          persist-credentials: true
       - name: wake up and write
         env:
           AUTHOR_NAME: ${{ github.actor }}
