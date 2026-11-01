@@ -20,16 +20,16 @@ me nothing. so the computer is consistent instead.
 
 <!-- today:stats -->
 
-**update 2026-10-31 21:48 UTC**
+**update 2026-11-01 01:01 UTC**
 
 | | |
 |---|---|
-| entries | 64 |
+| entries | 65 |
 | started | 2026-08-29 |
-| current streak | 64 days |
-| longest streak | 64 days |
+| current streak | 65 days |
+| longest streak | 65 days |
 | wakes last 7 days | 7 |
-| active last 16 weeks | 64/112 days |
+| active last 16 weeks | 65/112 days |
 
 last 16 weeks:
 
@@ -50,7 +50,7 @@ last 16 weeks:
 10-05: ███████
 10-12: ███████
 10-19: ███████
-10-26: ██████·
+10-26: ███████
 ```
 
 · = quiet day, █ = wrote something
